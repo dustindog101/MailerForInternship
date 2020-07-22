@@ -7,3 +7,7 @@ C:\Users\dusti\source\repos\MailerForDereje\obj\Debug\MailerForDereje.csproj.Gen
 C:\Users\dusti\source\repos\MailerForDereje\obj\Debug\MailerForDereje.csproj.CoreCompileInputs.cache
 C:\Users\dusti\source\repos\MailerForDereje\obj\Debug\MailerForDereje.exe
 C:\Users\dusti\source\repos\MailerForDereje\obj\Debug\MailerForDereje.pdb
+C:\Users\dusti\source\repos\MailerForDereje\bin\Debug\MetroFramework.Design.dll
+C:\Users\dusti\source\repos\MailerForDereje\bin\Debug\MetroFramework.dll
+C:\Users\dusti\source\repos\MailerForDereje\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\dusti\source\repos\MailerForDereje\obj\Debug\MailerForDereje.csproj.CopyComplete

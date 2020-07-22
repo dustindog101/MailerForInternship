@@ -18,7 +18,7 @@ namespace MailerForDereje
             InitializeComponent();
             Internals.updateTitle(this);
         }
-
+        public string names = turnIntoString(txtNames.Text);
         private void metroButton1_Click(object sender, EventArgs e)
         {
             Locations locations = new Locations();
@@ -26,10 +26,12 @@ namespace MailerForDereje
             locations.Email = txtEmails.Text;
             locations.Names = txtNames.Text;
             //
-            string names = turnIntoString(txtNames.Text);
-            foreach (var line in names)
+            
+            foreach (string newline in names.Split(new[] { '\n' }))
             {
-                MessageBox.Show(line.ToString());
+                names.Replace(newline, "");
+                MessageBox.Show(newline.ToString());
+                break;
             }
         }
         private static string turnIntoString(string inp)//this reads the file and returns it

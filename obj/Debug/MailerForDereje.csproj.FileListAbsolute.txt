@@ -1,0 +1,9 @@
+C:\Users\dusti\source\repos\MailerForDereje\bin\Debug\MailerForDereje.exe
+C:\Users\dusti\source\repos\MailerForDereje\bin\Debug\MailerForDereje.pdb
+C:\Users\dusti\source\repos\MailerForDereje\obj\Debug\MailerForDereje.csprojAssemblyReference.cache
+C:\Users\dusti\source\repos\MailerForDereje\obj\Debug\MailerForDereje.Form1.resources
+C:\Users\dusti\source\repos\MailerForDereje\obj\Debug\MailerForDereje.Properties.Resources.resources
+C:\Users\dusti\source\repos\MailerForDereje\obj\Debug\MailerForDereje.csproj.GenerateResource.cache
+C:\Users\dusti\source\repos\MailerForDereje\obj\Debug\MailerForDereje.csproj.CoreCompileInputs.cache
+C:\Users\dusti\source\repos\MailerForDereje\obj\Debug\MailerForDereje.exe
+C:\Users\dusti\source\repos\MailerForDereje\obj\Debug\MailerForDereje.pdb

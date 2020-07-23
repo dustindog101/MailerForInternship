@@ -15,12 +15,13 @@ namespace MailerForDereje
     {
         public string names = "";
         public string emails = "";
-        public string attachments = "";
+        public string attachments = @"NULL";
         //
         public string cfnames = "";
         public string clnames = "";
         public static string cemails = "";
-        public string cattachments = "";
+        public static int attachnum = 1;
+      //  public string cattachments = attachments+@"\("+attachnum.ToString()+").pdf";
         public Form1()
         {
             InitializeComponent();
@@ -31,7 +32,7 @@ namespace MailerForDereje
         private void metroButton1_Click(object sender, EventArgs e)
         {
             
-            Locations locations = new Locations();
+            Locations locations = new Locations();//this is honestly unneccesary and ill remove it asap
             locations.Attachments = txtattachments.Text;
             locations.Email = txtEmails.Text;
             locations.Names = txtNames.Text;
@@ -59,9 +60,11 @@ namespace MailerForDereje
             }
             //
 
-           Internals.SendEmail(this,cfnames,clnames,EMAIL.Text, @"C:\Users\dusti\source\repos\MailerForDereje\bin\Debug\test\attachments\(1).pdf");
+          // Internals.SendEmail(this,cfnames,clnames,EMAIL.Text, @"C:\Users\dusti\source\repos\MailerForDereje\bin\Debug\test\attachments\(1).pdf");
 
-            MessageBox.Show($"{cemails}");
+            MessageBox.Show($"First:{cfnames}\nLast:{clnames}\nEmail{cemails}\nAttachment location:{attachments + @"\(" + attachnum.ToString() + ").pdf"}");
+            attachnum++;
+            //cattachments = $@"{attachments}\({attachnum}).pdf";
 
         }
         private static string turnIntoString(string inp)//this reads the file and returns it
@@ -90,7 +93,7 @@ namespace MailerForDereje
         {
             names = turnIntoString(txtNames.Text);
            emails = turnIntoString(txtEmails.Text);
-           attachments = turnIntoString(txtattachments.Text);
+           attachments = txtattachments.Text;
             MessageBox.Show("Done!");
         }
     }

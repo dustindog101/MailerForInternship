@@ -19,7 +19,9 @@ namespace MailerForDereje
                 $"" +
                 $"" +
                 $"If you did not expect this email, please respond saying so." +
+
                 $"Thanks," +
+                $"{first} you were chosen to do this ladaldladladlda" +
                 $"dustin";
 
         }

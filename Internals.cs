@@ -17,9 +17,10 @@ namespace MailerForDereje
         public static void SendEmail(Form form1, string tofirst, string tolast, string toemail, string attachment)//send mail function
         {
             //variables
+            
             string fullName =$"{tofirst} {tolast}";
             var fromAddress = new MailAddress(EmailDetails.fromMail, EmailDetails.fromName);
-            var toAddress = new MailAddress(toemail, fullName);
+            var toAddress = new MailAddress(toemail.Replace(" ","").Replace("\n",""), fullName);
             const string fromPassword = EmailDetails.fromPass;
             const string subject = EmailDetails.Subject;
             string body = $"{EmailDetails.Body(tofirst, tolast)}";

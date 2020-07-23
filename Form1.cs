@@ -13,14 +13,24 @@ namespace MailerForDereje
 {
     public partial class Form1 : MetroForm
     {
+        public string names = "";
+        public string emails = "";
+        public string attachments = "";
+        //
+        public string cfnames = "";
+        public string clnames = "";
+        public static string cemails = "";
+        public string cattachments = "";
         public Form1()
         {
             InitializeComponent();
             Internals.updateTitle(this);
+           
         }
-        public string names = turnIntoString(txtNames.Text);
+       
         private void metroButton1_Click(object sender, EventArgs e)
         {
+            
             Locations locations = new Locations();
             locations.Attachments = txtattachments.Text;
             locations.Email = txtEmails.Text;
@@ -29,20 +39,59 @@ namespace MailerForDereje
             
             foreach (string newline in names.Split(new[] { '\n' }))
             {
-                names.Replace(newline, "");
-                MessageBox.Show(newline.ToString());
+                int index = names.IndexOf(Environment.NewLine);
+                names = names.Substring(index + Environment.NewLine.Length);
+                string[] splitter = newline.ToString().Split(' ');
+                cfnames = splitter[0];
+                clnames = splitter[1];
+
                 break;
+                
             }
+           foreach (string newline in emails.Split(new[] { '\n' }))
+            {
+                int index = emails.IndexOf(Environment.NewLine);
+                emails = emails.Substring(index +Environment.NewLine.Length);
+                cemails = newline.ToString();
+                EMAIL.Text = cemails.TrimEnd();
+                break;
+
+            }
+            //
+
+           Internals.SendEmail(this,cfnames,clnames,EMAIL.Text, @"C:\Users\dusti\source\repos\MailerForDereje\bin\Debug\test\attachments\(1).pdf");
+
+            MessageBox.Show($"{cemails}");
+
         }
         private static string turnIntoString(string inp)//this reads the file and returns it
         {
             string outp; // output
+            try
+            {
+
             using (var SR = new StreamReader(inp))
             {
                 outp = SR.ReadToEnd();
                 SR.Close();
             }
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show("Please enter valid locations\n\n " + ex.Message);
+                return "ERROR";
+            }
             return outp;
+        }
+
+        private void metroButton4_Click(object sender, EventArgs e)
+        {
+            names = turnIntoString(txtNames.Text);
+           emails = turnIntoString(txtEmails.Text);
+           attachments = turnIntoString(txtattachments.Text);
+            MessageBox.Show("Done!");
         }
     }
 }

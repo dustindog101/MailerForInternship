@@ -7,13 +7,13 @@ namespace MailerForDereje
 {
     class EmailDetails
     {
-        public const string fromMail = Login.email;
-        public const string fromPass = Login.pass;
+        public  static string fromMail = Login.email;
+        public static string fromPass = Login.pass;
         public const string fromName = "Dustin Hailie";
         public const string Subject = "This is a test emaill";
-        public static int totalSent = 0;
-        public static string lastSent = "NULL";
-        public static string Body(string first, string last)
+        //
+
+        public static string Body(string first, string last, string email)
         {
             return $"Hello {first} {last}, this is a test for Mailer made by Dustin blahblahblah" +
                 $"" +

@@ -7,8 +7,8 @@ namespace MailerForDereje
 {
     class Locations
     {
-        public string Email{ get; set; }
-        public string Names{ get; set; }
-        public string Attachments { get; set; }
+        public string Email = null;
+        public string Names = null;
+        public string Attachments = null;
     }
 }

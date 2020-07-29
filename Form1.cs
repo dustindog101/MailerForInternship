@@ -9,16 +9,18 @@ using System.Windows.Forms;
 using MetroFramework;
 using MetroFramework.Forms;
 using System.IO;
+using System.Threading;
+
 namespace MailerForDereje
 {
     public partial class Form1 : MetroForm
     {
-        public string names = "";
-        public string emails = "";
-        public string attachments = @"NULL";
+        public static string names = "";
+        public static string emails = "";
+        public static string attachments = @"NULL";
         //
-        public string cfnames = "";
-        public string clnames = "";
+        public static string cfnames = "";
+        public static string clnames = "";
         public static string cemails = "";
         public static int attachnum = 1;
       //  public string cattachments = attachments+@"\("+attachnum.ToString()+").pdf";
@@ -26,75 +28,54 @@ namespace MailerForDereje
         {
             InitializeComponent();
             Internals.updateTitle(this);
-           
         }
        
         private void metroButton1_Click(object sender, EventArgs e)
         {
-            
-            Locations locations = new Locations();//this is honestly unneccesary and ill remove it asap
-            locations.Attachments = txtattachments.Text;
-            locations.Email = txtEmails.Text;
-            locations.Names = txtNames.Text;
-            //
-            
-            foreach (string newline in names.Split(new[] { '\n' }))
+            if (Login.check() == true)
             {
-                int index = names.IndexOf(Environment.NewLine);
-                names = names.Substring(index + Environment.NewLine.Length);
-                string[] splitter = newline.ToString().Split(' ');
-                cfnames = splitter[0];
-                clnames = splitter[1];
-
-                break;
-                
+                metroButton2.Visible = true;
+                metroButton1.Visible = false;
+                backgroundWorker1.RunWorkerAsync();
             }
-           foreach (string newline in emails.Split(new[] { '\n' }))
+            else
             {
-                int index = emails.IndexOf(Environment.NewLine);
-                emails = emails.Substring(index +Environment.NewLine.Length);
-                cemails = newline.ToString();
-                EMAIL.Text = cemails.TrimEnd();
-                break;
-
+                MessageBox.Show("A login must be saved before you can start.");
             }
-            //
-
-          // Internals.SendEmail(this,cfnames,clnames,EMAIL.Text, @"C:\Users\dusti\source\repos\MailerForDereje\bin\Debug\test\attachments\(1).pdf");
-
-            MessageBox.Show($"First:{cfnames}\nLast:{clnames}\nEmail{cemails}\nAttachment location:{attachments + @"\(" + attachnum.ToString() + ").pdf"}");
-            attachnum++;
             //cattachments = $@"{attachments}\({attachnum}).pdf";
 
         }
-        private static string turnIntoString(string inp)//this reads the file and returns it
-        {
-            string outp; // output
-            try
-            {
-
-            using (var SR = new StreamReader(inp))
-            {
-                outp = SR.ReadToEnd();
-                SR.Close();
-            }
-
-            }
-            catch (Exception ex)
-            {
-
-                MessageBox.Show("Please enter valid locations\n\n " + ex.Message);
-                return "ERROR";
-            }
-            return outp;
-        }
+        
 
         private void metroButton4_Click(object sender, EventArgs e)
         {
-            names = turnIntoString(txtNames.Text);
-           emails = turnIntoString(txtEmails.Text);
-           attachments = txtattachments.Text;
+            Internals.load(txtNames,txtEmails, txtattachments);
+            statistics.count(tlnamesl, tlemailsl, tattachmentsl, names, emails, attachments);
+        }
+
+        private void metroButton5_Click(object sender, EventArgs e)
+        {
+            Login.save(metroTextBox1.Text+":"+metroTextBox2.Text);
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+            for (int i = 0; i < statistics.totalEmails; i++)
+            {
+                statistics.update(tnamess,temailss,tattachmentss);
+                Thread.Sleep(1500);
+                Internals.start(this, metroButton2, metroButton1, EMAIL, richTextBox1);
+            }
+            MessageBox.Show("Done!");
+        }
+
+        private void metroButton2_Click(object sender, EventArgs e)
+        {
+            backgroundWorker1.CancelAsync();
+            
             MessageBox.Show("Done!");
         }
     }
 }
+// ;)

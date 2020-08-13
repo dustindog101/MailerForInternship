@@ -11,7 +11,7 @@ namespace MailerForDereje
         public static void Log(RichTextBox rt, string input)
         {
             string previous = rt.Text;
-            rt.Text = $"-------------\n{input}\n-------------\n";
+            rt.Text += $"-------------\n{input}\n-------------\n";
         }
         public static string Log(string rt,string input)
         {

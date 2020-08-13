@@ -19,7 +19,7 @@ namespace MailerForDereje
         public static void SendEmail(Form form1, string tofirst, string tolast, string toemail, string attachment)//send mail function
         {
             //variables
-
+         //   MessageBox.Show("THREAD1");
             string fullName = $"{tofirst} {tolast}";
             var fromAddress = new MailAddress(EmailDetails.fromMail, EmailDetails.fromName);
             var toAddress = new MailAddress(toemail.Replace(" ", "").Replace("\n", ""), fullName);
@@ -73,7 +73,7 @@ namespace MailerForDereje
                 MessageBox.Show($"ERRORRRRRRRRRRRRRRRRRR#@$%#@^%#$@$$@#$; Error message:{ex.Message}\nWhat does this mean? Well it likely means your mail isnt properly configured. make sure to enable insecure programs.");
             }
 
-
+           // MessageBox.Show("sent");
 
         }
         public static void load(MetroTextBox txtNames, MetroTextBox txtEmails, MetroTextBox txtattachments)
@@ -94,9 +94,9 @@ namespace MailerForDereje
                     mb2.Visible = true;
                     mb1.Visible = false;
                 }));
-                //   mb2.Visible = true;
-                // mb1.Visible = false;
-                #region split
+
+                //    mb2.Visible = true;
+                //    mb1.Visible = false;
                 foreach (string newline in Form1.names.Split(new[] { '\n' }))
                 {
                     int index = Form1.names.IndexOf(Environment.NewLine);
@@ -119,22 +119,27 @@ namespace MailerForDereje
                         }));
                         break;
                     }
-                    #endregion
-                    //
 
+                    //
+                    MessageBox.Show("second");
                     SendEmail(f, Form1.cfnames, Form1.clnames, EMAIL.Text, Form1.attachments + @"\ (" + Form1.attachnum.ToString() + ").pdf");
                     Logger.Log(richTextBox1, $"First:{Form1.cfnames}\nLast:{Form1.clnames}\nEmail{Form1.cemails}\nAttachment location:{Form1.attachments + @"\( " + Form1.attachnum.ToString() + ").pdf"}");
-
+                    MessageBox.Show("first");
                 }
             }
         }
+
+
             public static void updateStatistics(MetroLabel name, MetroLabel emails, MetroLabel attachments, string Name, string Emails, string Attachments)
             {
                 name.Text = Name;
                 emails.Text = Emails;
                 attachments.Text = Attachments;
             }
-        }
+        
     }
+}
+
+
 
 

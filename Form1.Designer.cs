@@ -81,7 +81,7 @@
             this.metroTabControl1.Location = new System.Drawing.Point(0, 50);
             this.metroTabControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 2;
+            this.metroTabControl1.SelectedIndex = 1;
             this.metroTabControl1.Size = new System.Drawing.Size(900, 258);
             this.metroTabControl1.TabIndex = 0;
             this.metroTabControl1.UseSelectable = true;

@@ -107,7 +107,9 @@ namespace MailerForDereje
         private void metroButton5_Click(object sender, EventArgs e)
         {
             Login.save(metroTextBox1.Text+":"+metroTextBox2.Text);
-        }
+
+            attachnum = Convert.ToInt32(metroTextBox4.Text);
+                }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {

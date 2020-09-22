@@ -435,7 +435,7 @@
             // 
             // metroButton2
             // 
-            this.metroButton2.Location = new System.Drawing.Point(617, 29);
+            this.metroButton2.Location = new System.Drawing.Point(617, 20);
             this.metroButton2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.metroButton2.Name = "metroButton2";
             this.metroButton2.Size = new System.Drawing.Size(260, 41);

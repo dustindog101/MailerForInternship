@@ -25,13 +25,16 @@ namespace MailerForDereje
         public static string cemails = "";
         public static int attachnum = 331;
         public static int forloooop = 0;
+        public static string body = "";
+        public static string subject = "";
+        public static string name = "NULL";
       //  public string cattachments = attachments+@"\("+attachnum.ToString()+").pdf";
         public Form1()
         {
             InitializeComponent();
             Internals.updateTitle(this);
         }
-       
+
         private void metroButton1_Click(object sender, EventArgs e)
         {
             forloooop = statistics.totalEmails * 2;
@@ -66,27 +69,32 @@ namespace MailerForDereje
                     int index = Form1.emails.IndexOf(Environment.NewLine);
                     Form1.emails = Form1.emails.Substring(index + Environment.NewLine.Length);
                     Form1.cemails = newline.ToString();
-                    
-                       
-                        
+
+
+
                             EMAIL.Text = Form1.cemails.TrimEnd();
-                        
+
                         break;
-                    
+
                  }
 
                     //
                     sb.Append($"email:{EMAIL.Text} full name: {cfnames} {clnames}\n");
-                       Internals.SendEmail(this, Form1.cfnames, Form1.clnames, cemails.TrimEnd(), Form1.attachments + @"\\creatpdf1_Data Set " + Form1.attachnum.ToString() + ".pdf");
-                        Logger.Log(richTextBox1, $"First:{Form1.cfnames}\nLast:{Form1.clnames}\nEmail:{Form1.cemails}\nAttachment location:{Form1.attachments + @"\creatpdf1_Data Set " + Form1.attachnum.ToString() + ".pdf"}");
+                       Internals.SendEmail(this, Form1.cfnames, Form1.clnames, cemails.TrimEnd(), Form1.attachments + @"" + Form1.attachnum.ToString() + ".pdf");
+                        Logger.Log(richTextBox1, $"First:{Form1.cfnames}\nLast:{Form1.clnames}\nEmail:{Form1.cemails}\nAttachment location:{Form1.attachments + @"" + Form1.attachnum.ToString() + ".pdf"}");
                         // more variable work..
                         attachnum++;
 
-                      
-                    
+
+
                 }
+                string logfile = @"log\AutoMailer log; " + DateTime.Now.ToString("dddd, MMMM d, yyyy HH.mm.ss") + ".txt";
+                Directory.CreateDirectory("log");
+                File.CreateText(logfile);
                 metroButton2.Visible = false;
                 metroButton1.Visible = true;
+                
+                File.WriteAllText(logfile, richTextBox1.Text);
                 MessageBox.Show(sb.ToString()); ;
             }
             else
@@ -96,7 +104,7 @@ namespace MailerForDereje
             //cattachments = $@"{attachments}\({attachnum}).pdf";
 
         }
-        
+
 
         private void metroButton4_Click(object sender, EventArgs e)
         {
@@ -107,9 +115,11 @@ namespace MailerForDereje
         private void metroButton5_Click(object sender, EventArgs e)
         {
             Login.save(metroTextBox1.Text+":"+metroTextBox2.Text);
-
+            subject = metroTextBox5.Text;
+            body = metroTextBox3.Text;
             attachnum = Convert.ToInt32(metroTextBox4.Text);
-                }
+            name = metroTextBox6.Text;
+        }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -118,7 +128,7 @@ namespace MailerForDereje
                 statistics.update(tnamess, temailss, tattachmentss);
                 Thread.Sleep(1500);
                 //Internals.start(this, metroButton2, metroButton1, EMAIL, richTextBox1);
-              
+
 
                        metroButton2.Visible = true;
                         metroButton1.Visible = false;
@@ -156,6 +166,7 @@ namespace MailerForDereje
             metroButton1.Visible = true;
             metroButton2.Visible = false;
             MessageBox.Show("Done!");
+            File.WriteAllText(@"log\AutoMailer log; "+DateTime.Now.ToString("dddd, MMMM d, yyyy HH.mm.ss") +".txt",richTextBox1.Text);
         }
         public  void runner()
         {

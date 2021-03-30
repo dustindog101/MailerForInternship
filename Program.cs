@@ -15,7 +15,7 @@ namespace MailerForDereje
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            MessageBox.Show("Your password is stored in a encrypted file on the machine called PWH.rtz this file is encrypted in AES-256 with padding");
+          //  MessageBox.Show("Your password is stored in a encrypted file on the machine called PWH.rtz this file is encrypted in AES-256 with padding"); //do later
             Application.Run(new Form1());
         }
     }

@@ -12,6 +12,7 @@ namespace MailerForDereje
         {
             string previous = rt.Text;
             rt.Text += $"-------------\n{input}\n-------------\n";
+            
         }
         public static string Log(string rt,string input)
         {

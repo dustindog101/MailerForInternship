@@ -12,7 +12,7 @@ namespace MailerForDereje
 {
     class Internals
     {
-        public static void updateTitle(Form form1)
+        public static void updateTitle(Form form1 )
         {
             form1.Text = $"AutoMailer by dustin | Total sent:{statistics.totalSent} | last email:{statistics.lastEmail}";
         }
@@ -24,7 +24,7 @@ namespace MailerForDereje
             var fromAddress = new MailAddress(EmailDetails.fromMail, EmailDetails.fromName);
             var toAddress = new MailAddress(toemail.Replace(" ", "").Replace("\n", ""), fullName);
             string fromPassword = EmailDetails.fromPass;
-            const string subject = EmailDetails.Subject;
+             string subject = EmailDetails.Subject;
             string body = $"{EmailDetails.Body(tofirst, tolast, toemail)}";
             var Attachment = new Attachment(attachment);
             statistics.lastEmail = toemail;
@@ -136,7 +136,7 @@ namespace MailerForDereje
                 emails.Text = Emails;
                 attachments.Text = Attachments;
             }
-        
+
     }
 }
 
